@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>Cusear AR Experience</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./styles.css">
+  
+  <!-- A-Frame and MindAR -->
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <!-- UI Overlay -->
+  <div id="ui-container" class="ui-container">
+    <div class="glass-panel">
+      <h1>AR Book Experience</h1>
+      <p>Point your camera at the target image in your book to see it come to life.</p>
+      
+      <div class="demo-image-container">
+        <p class="small-text">Sample Target Image:</p>
+        <img src="./assets/target-image.png" alt="Target" class="demo-image">
+      </div>
+
+      <button id="start-button" class="primary-button">Start Experience</button>
+    </div>
+  </div>
+
+  <div id="scanning-overlay" class="scanning-overlay hidden">
+    <div class="scan-indicator"></div>
+    <p>Scanning for image...</p>
+  </div>
+
+  <!-- AR Scene -->
+  <!-- We disable standard VR UI and permission UI since we handle it -->
+  <a-scene 
+    mindar-image="imageTargetSrc: ./assets/target.mind; autoStart: false;" 
+    color-space="sRGB" 
+    renderer="colorManagement: true, physicallyCorrectLights" 
+    vr-mode-ui="enabled: false" 
+    device-orientation-permission-ui="enabled: false">
+    
+    <a-assets>
+      <video id="ar-video" src="./assets/video.mp4" playsinline webkit-playsinline loop crossorigin="anonymous"></video>
+    </a-assets>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+    <a-entity mindar-image-target="targetIndex: 0" id="ar-target">
+      <!-- 
+        The video plane. 
+        Width and height should match the aspect ratio of your target image and video. 
+        For the sample raccoon card, the aspect ratio is roughly 1:0.75 (width:height)
+      -->
+      <a-video src="#ar-video" position="0 0 0" height="0.75" width="1" rotation="0 0 0"></a-video>
+    </a-entity>
+    
+  </a-scene>
+
+  <script src="./app.js"></script>
+</body>
+</html>
