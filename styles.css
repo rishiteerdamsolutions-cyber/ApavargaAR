@@ -41,6 +41,7 @@ body, html {
 .ui-container.hidden {
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
 }
 
 .glass-panel {
