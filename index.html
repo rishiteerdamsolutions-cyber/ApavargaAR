@@ -24,7 +24,7 @@
       
       <div class="demo-image-container">
         <p class="small-text">Sample Target Image:</p>
-        <img src="./assets/target-image.png" alt="Target" class="demo-image">
+        <img src="./assets/marker1.png" alt="Target" class="demo-image">
       </div>
 
       <button id="start-button" class="primary-button">Start Experience</button>
@@ -39,14 +39,14 @@
   <!-- AR Scene -->
   <!-- We disable standard VR UI and permission UI since we handle it -->
   <a-scene 
-    mindar-image="imageTargetSrc: ./assets/target.mind; autoStart: false;" 
+    mindar-image="imageTargetSrc: ./assets/marker1.mind; autoStart: false;" 
     color-space="sRGB" 
     renderer="colorManagement: true, physicallyCorrectLights" 
     vr-mode-ui="enabled: false" 
     device-orientation-permission-ui="enabled: false">
     
     <a-assets>
-      <video id="ar-video" src="./assets/video.mp4" playsinline webkit-playsinline loop crossorigin="anonymous"></video>
+      <video id="ar-video" src="./assets/video1.mp4" playsinline webkit-playsinline loop crossorigin="anonymous"></video>
     </a-assets>
 
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
